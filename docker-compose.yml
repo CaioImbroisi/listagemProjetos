@@ -1,0 +1,53 @@
+version: "3.8"
+
+networks:
+  wp-network:
+
+volumes:
+  db:
+services:
+  mysql:
+    image: mysql
+    volumes:
+      - db:/var/lib/mysql
+    ports:
+      - 8081:3306
+    environment:
+      MYSQL_DATABASE: database
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - wp-network
+
+  wordpress:
+    depends_on:
+      - mysql
+    image: wordpress
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: admin
+      WORDPRESS_DB_PASSWORD: admin
+      WORDPRESS_DB_NAME: database
+    networks:
+      - wp-network
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8082:80
+    environment:
+      PMA_HOST: mysql
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: root
+      PHP_UPLOAD_MAX_FILESIZE: 32M
+      PHP_POST_MAX_SIZE: 32M
+    networks:
+      - wp-network
