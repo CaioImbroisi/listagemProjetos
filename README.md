@@ -26,6 +26,8 @@ Agora basta selecionar o arquivo clicando no botão "ESCOLHER ARQUIVO" e clicar 
 
 4. Todas as credenciais do projeto encontram-se no arquivo ```docker-compose.yml```.
 
+5. Agora basta abrir o ```http://localhost:8080/``` e se tudo deu certo o site deverá abrir corretamente.
+
 ## Comportamento do site
 
 ## Página Home
