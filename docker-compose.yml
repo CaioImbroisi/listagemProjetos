@@ -51,3 +51,7 @@ services:
       PHP_POST_MAX_SIZE: 32M
     networks:
       - wp-network
+
+# WordPress(WP-ADMIN)
+# Usuário: kkz
+# Senha: 123456
