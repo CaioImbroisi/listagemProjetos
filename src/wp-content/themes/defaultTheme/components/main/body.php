@@ -1,8 +1,8 @@
-<div class="mainContent">
+<main class="container">
 <?php
 $args = array(
   'post_type' => 'projeto',
-  'posts_per_page' => 5,
+  'posts_per_page' => 6,
   'orderby' => 'date',
   'order' => 'DESC',
 );
@@ -16,10 +16,9 @@ $projeto_query = new WP_Query($args);
       <?php
         get_template_part("components/cards/projectCards");
       ?>
-      </div>
   <?php
     endwhile;
     wp_reset_postdata();
   endif;
 ?>
-</div>
+</main>
